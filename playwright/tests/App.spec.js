@@ -1,7 +1,6 @@
 import { login, pass } from "../user";
 import { test, expect } from '@playwright/test';
 
-
 test('Успешная авторизация', async ({ page }) => {
 
   await page.goto("https://netology.ru/");
@@ -20,7 +19,7 @@ test('Успешная авторизация', async ({ page }) => {
 
   await page.getByTestId("login-submit-btn").click();
 
-  await page.locator("text=Мои курсы и профессии").isVisible();
+  await expect (page.locator("text=Мои курсы и профессии").isVisible());
 });
 
 test("Неуспешная авторизация", async ({ page }) => {
@@ -41,5 +40,5 @@ test("Неуспешная авторизация", async ({ page }) => {
 
   await page.getByTestId("login-submit-btn").click();
 
-  await page.getByTestId("login-error-hint").isVisible();
+  await expect (page.getByTestId("login-error-hint").isVisible());
 });
